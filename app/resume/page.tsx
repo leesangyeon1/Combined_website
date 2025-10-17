@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 };
 
 export default function ResumePage() {
-  const resume = site.resume ?? {};
-  const resumeUrl = resume.filePath;
+  //const resume = site.resume ?? {};
+  const resumeUrl = site.resume?.filePath ?? null;
 
   return (
     <main className="py-5">
