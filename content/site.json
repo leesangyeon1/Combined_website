@@ -1,1 +1,136 @@
-// navigation/copy/link.. content source
+
+{
+  "meta": {
+    "siteName": "Sangyeon Lee",
+    "jobTitle": "IT Infrastructure & Systems Specialist",
+    "description": "HPC & Kubernetes-focused Systems Administrator: clusters, Slurm, InfiniBand, automation, and reliable infrastructure.",
+    "ogImage": "/Assets/preview.png",
+    "themeColor": "#0f172a"
+  },
+  "navigation": [
+    { "label": "About", "href": "#about" },
+    { "label": "Experience", "href": "#experience" },
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Skills", "href": "#skills" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "hero": {
+    "tagline": "HPC • Kubernetes • Linux",
+    "title": "Sangyeon Lee — IT Infrastructure & Systems Specialist",
+    "subtitle": "I design, build, and care for reliable compute infrastructure: from HPC clusters (Slurm, MPI, InfiniBand) to Kubernetes platforms and secure Linux servers. I like turning messy systems into fast, well-documented, and automated ones.",
+    "primaryCta": { "label": "See Projects", "href": "#projects" },
+    "secondaryCta": { "label": "Resume", "href": "/resume" },
+    "cards": [
+      {
+        "title": "Clusters",
+        "body": "• Slurm  • MPI  • Kubernetes",
+        "effect": "cluster"
+      },
+      {
+        "title": "IT",
+        "body": "• Active Directory  • Windows Server  • Troubleshooting",
+        "effect": "it"
+      },
+      {
+        "title": "Networking",
+        "body": "• Cisco • Mellanox • VLAN",
+        "effect": "network"
+      }
+    ]
+  },
+  "about": {
+    "id": "about",
+    "title": "About",
+    "body": "Junior Computer Science – Information Technology major focused on systems and infrastructure. I’ve worked as an HPC Cluster Technician and Student Information Technician, supporting cluster expansion, job scheduling, and end-user workflows. I document thoroughly and prefer scripts for repeatability."
+  },
+  "experience": {
+    "id": "experience",
+    "title": "Experience",
+    "roles": [
+      {
+        "title": "HPC Cluster Technician · UCO",
+        "period": "2023–Present",
+        "highlights": [
+          "Administrate university Linux-based supercomputer server architectures and infrastructure.",
+          "Implemented Kubernetes cluster to support containerized workloads.",
+          "Developed expertise in high-performance computing (HPC) and cluster management.",
+          "Configured and maintained Cisco and Mellanox network switches, including InfiniBand connectivity for high-speed data transfer."
+        ]
+      },
+      {
+        "title": "Student Information Technician · UCO",
+        "period": "2023–Present",
+        "highlights": [
+          "Trained new technicians on ticketing systems, Active Directory, device imaging, troubleshooting, and hardware/software support through hands-on projects.",
+          "Provided IT hardware maintenance and troubleshooting for university departments.",
+          "Diagnosed and resolved issues related to Windows, macOS, and the campus network environment."
+        ]
+      },
+      {
+        "title": "Field Signal · Ground Operations Command",
+        "period": "2020–2022",
+        "highlights": [
+          "Ensured seamless and reliable node connections for military operations.",
+          "Operated advanced military communication devices.",
+          "Maintained communication centers and combat field communication stations."
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "id": "projects",
+    "title": "Selected Projects",
+    "items": [
+      {
+        "title": "HPC Node Communication Healthcheck",
+        "description": "MPI+Slurm script that verifies node-to-node connectivity and surfaces failures fast.",
+        "stack": ["MPI", "Slurm", "Bash"],
+        "link": {
+          "label": "View write-up",
+          "href": "https://lnkd.in/guZp7RHB"
+        }
+      },
+      {
+        "title": "Kubernetes Dashboard Deployment",
+        "description": "Hardened dashboard with RBAC, service accounts, and namespaced access.",
+        "stack": ["K8s", "RBAC", "containerd"]
+      },
+      {
+        "title": "BIND Authoritative + Caching Split",
+        "description": "Documented and deployed secure DNS with SELinux, views, and zone hygiene.",
+        "stack": ["BIND9", "SELinux", "DNS"]
+      }
+    ]
+  },
+  "skills": {
+    "id": "skills",
+    "title": "Skills",
+    "items": [
+      "Linux (RHEL/Alma)",
+      "Kubernetes",
+      "Slurm",
+      "MPI",
+      "InfiniBand/OFED",
+      "Bash/Shell",
+      "IBM server setup",
+      "Switch Configuration",
+      "Monitoring/Logging"
+    ]
+  },
+  "contact": {
+    "id": "contact",
+    "title": "Contact",
+    "body": "Please let me know if you have any questions.",
+    "form": {
+      "action": "https://formsubmit.co/ec16ab93f6211f5040b34f4a0f49f40a",
+      "next": "/?sent=1",
+      "email": "slee103@uco.edu"
+    }
+  },
+  "resume": {
+    "filePath": null
+  },
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/sangyeon-lee-434325289"
+  }
+}
