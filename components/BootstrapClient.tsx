@@ -6,6 +6,7 @@ export default function BootstrapClient() {
   useEffect(() => {
     const loadBootstrap = async () => {
       try {
+        // @ts-ignore - Bootstrap bundle doesn't provide TypeScript definitions
         await import('bootstrap/dist/js/bootstrap.bundle.min.js');
       } catch (error) {
         console.warn('Bootstrap JS failed to load', error);
