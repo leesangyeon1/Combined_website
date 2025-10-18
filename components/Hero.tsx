@@ -1,106 +1,36 @@
 'use client';
+import React from 'react';
+import dynamic from 'next/dynamic';
 
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+const Particles3DField = dynamic(() => import('./Particles3DField'), { ssr: false });
 
-import site from '../content/site.json';
-import ClusterField from './ClusterField';
-import LaserFlow from './LaserFlow';
-
-type HeroContent = typeof site.hero;
-type HeroEffect = 'cluster' | 'it' | 'network';
-
-const heroData = site.hero;
-
-export default function Hero({ data = heroData }: { data?: HeroContent }) {
-  const [activeEffect, setActiveEffect] = useState<HeroEffect>('cluster');
-
-  useEffect(() => {
-    const prefersReducedMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const elements = document.querySelectorAll('.reveal');
-
-    if (prefersReducedMotion || typeof window === 'undefined') {
-      elements.forEach((el) => el.classList.add('reveal-visible'));
-      return;
-    }
-
-    if (!('IntersectionObserver' in window)) {
-      elements.forEach((el) => el.classList.add('reveal-visible'));
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('reveal-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    elements.forEach((el) => observer.observe(el));
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
+export default function Hero() {
   return (
-    <section className="py-5 section-divider position-relative">
-      <div className="hero-background-layer" aria-hidden="true">
-        {activeEffect === 'cluster' ? (
-          <ClusterField className="position-absolute top-0 start-0 w-100 h-100" />
-        ) : null}
-        {activeEffect === 'it' ? <LaserFlow /> : null}
-      </div>
-      <div className="container position-relative" style={{ zIndex: 1 }}>
-        <div className="row g-5 align-items-center">
-          <div className="col-lg-7 reveal">
-            <span className="tag-pill mb-3 d-inline-block">{data.tagline}</span>
-            <h1 className="display-5 fw-bold mb-3">{data.title}</h1>
-            <p className="text-muted-custom mb-4">{data.subtitle}</p>
-            <div className="d-flex flex-wrap gap-3">
-              <a href={data.primaryCta.href} className="btn btn-primary px-4 py-2">
-                {data.primaryCta.label}
-              </a>
-              <Link href={data.secondaryCta.href} className="btn btn-outline-light btn-ghost px-4 py-2">
-                {data.secondaryCta.label}
-              </Link>
-            </div>
-          </div>
-          <div className="col-lg-5">
-            <div className="hero-panel p-4 reveal">
-              <div className="row g-3 row-cols-1">
-                {data.cards.map((card) => {
-                  const effect = card.effect as HeroEffect;
-                  const isActive = activeEffect === effect;
-                  return (
-                    <div key={card.title} className="col">
-                      <button
-                        type="button"
-                        className={`w-100 text-start card-panel p-4 h-100 bg-transparent border-0 ${
-                          isActive ? 'shadow-lg' : ''
-                        }`}
-                        onClick={() => setActiveEffect(effect)}
-                        aria-pressed={isActive}
-                      >
-                        <h3 className="h5 mb-2 text-white">{card.title}</h3>
-                        <p className="mb-0 text-muted-custom small">{card.body}</p>
-                      </button>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+    <section className="relative w-full">
+      <div className="relative h-[600px] w-full overflow-hidden rounded-2xl">
+        <Particles3DField
+          particleCount={600}
+          gridGap={15}
+          snapRadius={150}
+          snapSpeed={0.1}
+          depth={500}
+          color={0x07cfeb}
+          background="#020617"
+          className="absolute inset-0"
+        />
+        <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+          <h1 className="text-4xl font-bold text-white drop-shadow-xl md:text-6xl">3D Cluster Field</h1>
+          <p className="mt-4 max-w-2xl text-lg text-neutral-200 md:text-xl">
+            Hover near the points to snap them into a subtle 3D lattice while the rest of your site content stays
+            perfectly intact in the foreground.
+          </p>
         </div>
+      </div>
+      <div className="mx-auto max-w-4xl px-6 py-10 text-neutral-200">
+        <p>
+          이 히어로 섹션은 3D 파티클을 배경으로 활용하면서도, 기존 페이지 컨텐츠가 그대로 유지되도록 설계되어
+          있습니다.
+        </p>
       </div>
     </section>
   );
