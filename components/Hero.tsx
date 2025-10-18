@@ -64,6 +64,7 @@ export default function Hero({ data = heroData }: { data?: HeroContent }) {
               linkDistance={120}
               hoverSnapSpeed={0.2}
               freeJitter={0.8}
+              className="w-100 h-100"
             />
           </div>
         )}
