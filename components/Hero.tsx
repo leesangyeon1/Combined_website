@@ -94,7 +94,7 @@ export default function Hero({ data = heroData }: { data?: HeroContent }) {
         minWidth: 200.0,
         scale: 1.0,
         scaleMobile: 1.0,
-        color: 0x7cfeb,
+        color: 0x07cfeb,
         backgroundAlpha: 0.0,
         points: 10.0,
         maxDistance: 20.0,
