@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import site from '../content/site.json';
-import ParticlesField from './ParticlesField';
+import ClusterField from './ClusterField';
 import LaserFlow from './LaserFlow';
 
 type HeroContent = typeof site.hero;
@@ -56,7 +56,7 @@ export default function Hero({ data = heroData }: { data?: HeroContent }) {
     <section className="py-5 section-divider position-relative">
       <div className="hero-background-layer" aria-hidden="true">
         {activeEffect === 'cluster' ? (
-          <ParticlesField className="position-absolute top-0 start-0 w-100 h-100" />
+          <ClusterField className="position-absolute top-0 start-0 w-100 h-100" />
         ) : null}
         {activeEffect === 'it' ? <LaserFlow /> : null}
       </div>
