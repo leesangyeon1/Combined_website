@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import site from '../content/site.json';
+import ClusterField from './ClusterField';
 import LaserFlow from './LaserFlow';
 
 type HeroContent = typeof site.hero;
@@ -13,8 +14,6 @@ const heroData = site.hero;
 
 export default function Hero({ data = heroData }: { data?: HeroContent }) {
   const [activeEffect, setActiveEffect] = useState<HeroEffect>('cluster');
-  const vantaRef = useRef<any>(null);
-  const vantaContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const prefersReducedMotion =
@@ -53,83 +52,12 @@ export default function Hero({ data = heroData }: { data?: HeroContent }) {
     };
   }, []);
 
-  useEffect(() => {
-    let isCancelled = false;
-
-    const destroyVanta = () => {
-      if (vantaRef.current && typeof vantaRef.current.destroy === 'function') {
-        vantaRef.current.destroy();
-        vantaRef.current = null;
-      }
-    };
-
-    if (activeEffect !== 'cluster') {
-      destroyVanta();
-      return undefined;
-    }
-
-    const initVanta = async () => {
-      if (typeof window === 'undefined') return undefined;
-      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        return undefined;
-      }
-      const [{ default: VANTA }, THREE] = await Promise.all([
-        import('vanta/dist/vanta.net.min'),
-        import('three')
-      ]);
-
-      if (isCancelled || !vantaContainerRef.current) {
-        return undefined;
-      }
-
-      destroyVanta();
-
-      vantaRef.current = VANTA({
-        el: vantaContainerRef.current,
-        THREE,
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.0,
-        minWidth: 200.0,
-        scale: 1.0,
-        scaleMobile: 1.0,
-        color: 0x07cfeb,
-        backgroundAlpha: 0.0,
-        points: 10.0,
-        maxDistance: 20.0,
-        spacing: 15.0
-      });
-
-      return undefined;
-    };
-
-    initVanta();
-
-    return () => {
-      isCancelled = true;
-      if (activeEffect !== 'cluster') {
-        destroyVanta();
-      }
-    };
-  }, [activeEffect]);
-
-  useEffect(() => {
-    return () => {
-      if (vantaRef.current && typeof vantaRef.current.destroy === 'function') {
-        vantaRef.current.destroy();
-        vantaRef.current = null;
-      }
-    };
-  }, []);
-
   return (
     <section className="py-5 section-divider position-relative">
       <div className="hero-background-layer" aria-hidden="true">
-        <div
-          ref={vantaContainerRef}
-          className={`position-absolute top-0 start-0 w-100 h-100 ${activeEffect === 'cluster' ? '' : 'd-none'}`}
-        />
+        {activeEffect === 'cluster' ? (
+          <ClusterField className="position-absolute top-0 start-0 w-100 h-100" />
+        ) : null}
         {activeEffect === 'it' ? <LaserFlow /> : null}
       </div>
       <div className="container position-relative" style={{ zIndex: 1 }}>
