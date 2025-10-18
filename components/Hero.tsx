@@ -1,9 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-
+import dynamic from 'next/dynamic';
 import site from '../content/site.json';
 import LaserFlow from './LaserFlow';
 
@@ -57,7 +56,7 @@ export default function Hero({ data = heroData }: { data?: HeroContent }) {
   return (
     <section className="py-5 section-divider position-relative">
       <div className="hero-background-layer" aria-hidden="true">
-        {activeEffect === 'cluster' ? (
+        {activeEffect === 'cluster' && (
           <div className="position-absolute top-0 start-0 w-100 h-100">
             <ParticlesField
               particleCount={140}
@@ -65,12 +64,12 @@ export default function Hero({ data = heroData }: { data?: HeroContent }) {
               linkDistance={120}
               hoverSnapSpeed={0.2}
               freeJitter={0.8}
-              className="w-full h-full"
             />
           </div>
-        ) : null}
-        {activeEffect === 'it' ? <LaserFlow /> : null}
+        )}
+        {activeEffect === 'it' && <LaserFlow />}
       </div>
+
       <div className="container position-relative" style={{ zIndex: 1 }}>
         <div className="row g-5 align-items-center">
           <div className="col-lg-7 reveal">
@@ -86,6 +85,7 @@ export default function Hero({ data = heroData }: { data?: HeroContent }) {
               </Link>
             </div>
           </div>
+
           <div className="col-lg-5">
             <div className="hero-panel p-4 reveal">
               <div className="row g-3 row-cols-1">
