@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-
+import dynamic from 'next/dynamic';
 import site from '../content/site.json';
-import ClusterField from './ClusterField';
 import LaserFlow from './LaserFlow';
+
+const ParticlesField = dynamic(() => import('./ParticlesField'), { ssr: false });
 
 type HeroContent = typeof site.hero;
 type HeroEffect = 'cluster' | 'it' | 'network';
@@ -55,11 +56,20 @@ export default function Hero({ data = heroData }: { data?: HeroContent }) {
   return (
     <section className="py-5 section-divider position-relative">
       <div className="hero-background-layer" aria-hidden="true">
-        {activeEffect === 'cluster' ? (
-          <ClusterField className="position-absolute top-0 start-0 w-100 h-100" />
-        ) : null}
-        {activeEffect === 'it' ? <LaserFlow /> : null}
+        {activeEffect === 'cluster' && (
+          <div className="position-absolute top-0 start-0 w-100 h-100">
+            <ParticlesField
+              particleCount={140}
+              gridGap={64}
+              linkDistance={120}
+              hoverSnapSpeed={0.2}
+              freeJitter={0.8}
+            />
+          </div>
+        )}
+        {activeEffect === 'it' && <LaserFlow />}
       </div>
+
       <div className="container position-relative" style={{ zIndex: 1 }}>
         <div className="row g-5 align-items-center">
           <div className="col-lg-7 reveal">
@@ -75,6 +85,7 @@ export default function Hero({ data = heroData }: { data?: HeroContent }) {
               </Link>
             </div>
           </div>
+
           <div className="col-lg-5">
             <div className="hero-panel p-4 reveal">
               <div className="row g-3 row-cols-1">
