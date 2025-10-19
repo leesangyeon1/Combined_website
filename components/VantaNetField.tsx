@@ -47,7 +47,7 @@ export default function VantaNetField({ className = '' }: VantaNetFieldProps) {
         forceAnimate: true,
       });
 
-      const alignModule = await import('@/lib/local-cluster-align');
+      const alignModule = await import('/scripts/local-cluster-align.js');
       if (cancelled || !vantaInstance) return;
       const attach = alignModule.attachLocalClusterAlign as (
         instance: any,
